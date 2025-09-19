@@ -1,0 +1,85 @@
+---
+layout: default
+---
+
+<article class="schedule">
+    <header class="schedule-header">
+        <h1>{{ page.title }}</h1>
+        {% if page.date %}
+        <div class="schedule-meta">
+            <span class="date-tag"><i class="fas fa-calendar"></i> {{ page.date }}</span>
+            {% if page.day_of_week %}
+            <span class="day-tag">{{ page.day_of_week }}</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </header>
+
+    <div class="schedule-content">
+        {% if page.objectives %}
+        <section class="schedule-section">
+            <h2><i class="fas fa-bullseye"></i> Today's Objectives</h2>
+            <ul class="objectives-list">
+                {% for objective in page.objectives %}
+                <li>{{ objective }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        <section class="schedule-section">
+            <h2><i class="fas fa-clock"></i> Daily Schedule</h2>
+            <div class="schedule-timeline">
+                {{ content }}
+            </div>
+        </section>
+
+        {% if page.activities %}
+        <section class="schedule-section">
+            <h2><i class="fas fa-play"></i> Activities</h2>
+            <div class="activities-grid">
+                {% for activity in page.activities %}
+                <div class="activity-card">
+                    <h3>{{ activity.name }}</h3>
+                    {% if activity.time %}
+                    <div class="activity-time">
+                        <i class="fas fa-clock"></i> {{ activity.time }}
+                    </div>
+                    {% endif %}
+                    {% if activity.description %}
+                    <p>{{ activity.description }}</p>
+                    {% endif %}
+                    {% if activity.materials %}
+                    <div class="activity-materials">
+                        <strong>Materials:</strong>
+                        <ul>
+                            {% for material in activity.materials %}
+                            <li>{{ material }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.notes %}
+        <section class="schedule-section">
+            <h2><i class="fas fa-sticky-note"></i> Notes</h2>
+            <div class="notes-content">
+                {{ page.notes | markdownify }}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+
+    <footer class="schedule-footer">
+        <div class="schedule-navigation">
+            <a href="{{ '/schedules/' | relative_url }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Schedules
+            </a>
+        </div>
+    </footer>
+</article>

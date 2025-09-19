@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+<article class="lesson">
+    <header class="lesson-header">
+        <h1>{{ page.title }}</h1>
+        {% if page.subject %}
+        <div class="lesson-meta">
+            <span class="subject-tag">{{ page.subject }}</span>
+            {% if page.grade_level %}
+            <span class="grade-tag">Grade {{ page.grade_level }}</span>
+            {% endif %}
+            {% if page.duration %}
+            <span class="duration-tag"><i class="fas fa-clock"></i> {{ page.duration }}</span>
+            {% endif %}
+        </div>
+        {% endif %}
+    </header>
+
+    <div class="lesson-content">
+        {% if page.topics %}
+        <section class="lesson-section">
+            <h2><i class="fas fa-list-ul"></i> Topics Covered</h2>
+            <ul class="topics-list">
+                {% for topic in page.topics %}
+                <li>{{ topic }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if page.why_important %}
+        <section class="lesson-section">
+            <h2><i class="fas fa-lightbulb"></i> Why This Is Important</h2>
+            <div class="importance-content">
+                {{ page.why_important | markdownify }}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.example %}
+        <section class="lesson-section">
+            <h2><i class="fas fa-eye"></i> Example</h2>
+            <div class="example-content">
+                {{ page.example | markdownify }}
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="lesson-section">
+            <h2><i class="fas fa-file-alt"></i> Lesson Content</h2>
+            <div class="main-content">
+                {{ content }}
+            </div>
+        </section>
+
+        {% if page.problem %}
+        <section class="lesson-section">
+            <h2><i class="fas fa-puzzle-piece"></i> Practice Problem</h2>
+            <div class="problem-content">
+                {{ page.problem | markdownify }}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.review %}
+        <section class="lesson-section">
+            <h2><i class="fas fa-redo"></i> Review</h2>
+            <div class="review-content">
+                {{ page.review | markdownify }}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.materials %}
+        <section class="lesson-section">
+            <h2><i class="fas fa-tools"></i> Materials Needed</h2>
+            <ul class="materials-list">
+                {% for material in page.materials %}
+                <li>{{ material }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+    </div>
+
+    <footer class="lesson-footer">
+        <div class="lesson-navigation">
+            <a href="{{ '/lessons/' | relative_url }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Lessons
+            </a>
+        </div>
+    </footer>
+</article>
