@@ -1,0 +1,49 @@
+# Site settings
+title: Simon's School
+description: "Lesson plans and learning resources for 3rd grade home schooling"
+url: "https://bw4sz.github.io"
+baseurl: "/Simon-School"
+
+# Jekyll settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+# Collections
+collections:
+  lessons:
+    output: true
+    permalink: /:collection/:name/
+  schedules:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "lessons"
+    values:
+      layout: "lesson"
+  - scope:
+      path: ""
+      type: "schedules"
+    values:
+      layout: "schedule"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - node_modules/
+  - README.md
